@@ -7,6 +7,7 @@ import Wrapper from "../Helpers/Wrapper";
 const AddUser = (props) => {
   const nameref   =  useRef();
   const ageref    = useRef();
+  const clgref    = useRef();
   
    const [Error,SetError] = useState();
   
@@ -16,10 +17,11 @@ const AddUser = (props) => {
     event.preventDefault();
     const refenteredname=nameref.current.value;
     const refenteredage=ageref.current.value;
-    if(refenteredname.trim().length ===0 || refenteredage.trim().length ===0){
+    const refenteredclgname=clgref.current.value;
+    if(refenteredname.trim().length ===0 || refenteredage.trim().length ===0 || refenteredclgname.trim().length ===0){
       SetError({
         title:'Invalid Input',
-        msg:'please enter a valid name and age.'
+        msg:'please enter all the fields.'
       })
         return;
     }
@@ -31,10 +33,11 @@ const AddUser = (props) => {
       })
         return;
     }
-    console.log(refenteredname,refenteredage);
-    props.AddUser(refenteredname,refenteredage);
+    console.log(refenteredname,refenteredage,refenteredclgname);
+    props.AddUser(refenteredname,refenteredage,refenteredclgname);
     nameref.current.value='';
     ageref.current.value='';
+    clgref.current.value='';
   };
   const  errorHandler =() =>{
     SetError(null);
@@ -48,7 +51,9 @@ const AddUser = (props) => {
           <input type="text" id="username"  ref={nameref}></input>
           <label htmlFor="age">Age (Years)</label>
           <input type="number" id="age" ref={ageref}></input>
-          <Button type="submit">Add User </Button>
+          <label htmlFor="clgname">CollegeName</label>
+          <input type='text' id='clgname' ref={clgref}></input>         
+           <Button type="submit">Add User </Button>
         </form>
     </Card>
     </Wrapper>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,Fragment} from 'react';
 import AddUser from './Components/Users/AddUser';
 import './index.css';
 import UserList from './Components/Users/UserList';
@@ -12,10 +12,10 @@ return [...prevState,{name:UName, age:Age, id:UName+Age}];
  })
   }
   return (
-    <div>
+    <Fragment>
      <AddUser  AddUser={UserHandler}/>
      <UserList  Users={UsersList} /> 
-    </div>
+    </Fragment>
   );
 }
 
